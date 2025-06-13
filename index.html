@@ -80,7 +80,8 @@
                 </div>
             </section>
 
-            <section id="ai-recommendation" class="mb-12 p-6 bg-white rounded-xl shadow-md">
+            <!-- La sección de recomendación AI ha sido eliminada temporalmente -->
+            <!-- <section id="ai-recommendation" class="mb-12 p-6 bg-white rounded-xl shadow-md">
                 <h2 class="text-2xl font-semibold text-stone-800 mb-4 text-center">Tu Sugerencia Personalizada con IA ✨</h2>
                 <div class="max-w-xl mx-auto text-center">
                     <p class="text-stone-600 mb-4">¿Qué es lo que más te gustaría disfrutar en tu comida de verano?</p>
@@ -92,7 +93,7 @@
                         <p class="text-sm text-purple-500">Describe lo que buscas y la IA te ayudará a elegir el lugar perfecto.</p>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
             <section id="invitation" class="mb-12 p-6 bg-white rounded-xl shadow-md">
                  <h2 class="text-2xl font-semibold text-stone-800 mb-4 text-center">Confirma tu Asistencia</h2>
@@ -204,106 +205,107 @@
                         </div>
                     </div>
 
-                    <div class="border-t pt-4 mt-4">
+                    <!-- La sección de Sugerencia de Menú con IA ha sido eliminada temporalmente -->
+                    <!-- <div class="border-t pt-4 mt-4">
                         <h5 class="font-semibold text-lg mb-3">Sugerencia de Menú ✨ (Generado por IA)</h5>
                         <textarea id="dietary-preferences" class="w-full p-2 border border-gray-300 rounded-md mb-2" rows="2" placeholder="Ej: 3 vegetarianos, 2 sin gluten"></textarea>
                         <button id="generate-menu-btn" class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors">Generar Sugerencia de Menú ✨</button>
                         <div id="menu-suggestion-output" class="mt-4 p-4 bg-gray-50 rounded-lg text-gray-700 whitespace-pre-wrap">
                             <p class="text-sm text-gray-500">Haz clic en 'Generar Sugerencia de Menú' para obtener una propuesta basada en las especialidades del restaurante y tus preferencias.</p>
                         </div>
-                    </div>
+                    </div> -->
                 `;
                 modal.classList.add('is-open');
 
-                document.getElementById('generate-menu-btn').addEventListener('click', () => {
-                    const preferences = document.getElementById('dietary-preferences').value;
-                    generateMenuSuggestion(restaurant.name, restaurant.details.specialties, preferences);
-                });
+                // Lógica de generación de menú con IA eliminada temporalmente
+                // document.getElementById('generate-menu-btn').addEventListener('click', () => {
+                //     const preferences = document.getElementById('dietary-preferences').value;
+                //     generateMenuSuggestion(restaurant.name, restaurant.details.specialties, preferences);
+                // });
             };
 
-            const generateMenuSuggestion = async (restaurantName, specialties, preferences) => {
-                const outputDiv = document.getElementById('menu-suggestion-output');
-                outputDiv.innerHTML = `<p class="text-center text-indigo-500">Generando sugerencia de menú...</p>`;
+            // Función de generación de menú con IA eliminada temporalmente
+            // const generateMenuSuggestion = async (restaurantName, specialties, preferences) => {
+            //     const outputDiv = document.getElementById('menu-suggestion-output');
+            //     outputDiv.innerHTML = `<p class="text-center text-indigo-500">Generando sugerencia de menú...</p>`;
 
-                let chatHistory = [];
-                const promptText = `Dada la siguiente información de un restaurante:
-Nombre: ${restaurantName}
-Especialidades: ${specialties.join(', ')}
+            //     let chatHistory = [];
+            //     const promptText = `Dada la siguiente información de un restaurante:
+            // Nombre: ${restaurantName}
+            // Especialidades: ${specialties.join(', ')}
 
-Sugiere un menú de 3 platos (entrante, principal, postre) para una comida de equipo de 20 personas, incorporando sus especialidades. Considera también las siguientes preferencias dietéticas (si las hay): ${preferences || 'ninguna'}. El menú debe ser coherente y atractivo para un evento de verano. Formatea la respuesta claramente con secciones para Entrante, Principal y Postre.`;
+            // Sugiere un menú de 3 platos (entrante, principal, postre) para una comida de equipo de 20 personas, incorporando sus especialidades. Considera también las siguientes preferencias dietéticas (si las hay): ${preferences || 'ninguna'}. El menú debe ser coherente y atractivo para un evento de verano. Formatea la respuesta claramente con secciones para Entrante, Principal y Postre.`;
 
-                chatHistory.push({ role: "user", parts: [{ text: promptText }] });
-                const payload = { contents: chatHistory };
-                const apiKey = ""; 
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            //     chatHistory.push({ role: "user", parts: [{ text: promptText }] });
+            //     const payload = { contents: chatHistory };
+            //     const apiKey = "";
+            //     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    const result = await response.json();
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        let text = result.candidates[0].content.parts[0].text;
-                        // Convert markdown bold to HTML strong tags
-                        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                        outputDiv.innerHTML = text;
-                    } else {
-                        outputDiv.innerHTML = '<p class="text-red-500">No se pudo generar la sugerencia de menú. Inténtalo de nuevo más tarde.</p>';
-                    }
-                } catch (error) {
-                    console.error('Error al llamar a la API de Gemini:', error);
-                    outputDiv.innerHTML = '<p class="text-red-500">Error de conexión al generar la sugerencia de menú.</p>';
-                }
-            };
+            //     try {
+            //         const response = await fetch(apiUrl, {
+            //             method: 'POST',
+            //             headers: { 'Content-Type': 'application/json' },
+            //             body: JSON.stringify(payload)
+            //         });
+            //         const result = await response.json();
+            //         if (result.candidates && result.candidates.length > 0 &&
+            //             result.candidates[0].content && result.candidates[0].content.parts &&
+            //             result.candidates[0].content.parts.length > 0) {
+            //             let text = result.candidates[0].content.parts[0].text;
+            //             text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            //             outputDiv.innerHTML = text;
+            //         } else {
+            //             outputDiv.innerHTML = '<p class="text-red-500">No se pudo generar la sugerencia de menú. Inténtalo de nuevo más tarde.</p>';
+            //         }
+            //     } catch (error) {
+            //         console.error('Error al llamar a la API de Gemini:', error);
+            //         outputDiv.innerHTML = '<p class="text-red-500">Error de conexión al generar la sugerencia de menú.</p>';
+            //     }
+            // };
 
-            // New AI Recommendation section logic
-            document.getElementById('get-ai-recommendation-btn').addEventListener('click', async () => {
-                const enjoymentPrompt = document.getElementById('enjoyment-prompt').value;
-                const aiOutputDiv = document.getElementById('ai-recommendation-output');
-                aiOutputDiv.innerHTML = `<p class="text-center text-purple-500">Analizando tus preferencias...</p>`;
+            // Lógica de recomendación de IA eliminada temporalmente
+            // document.getElementById('get-ai-recommendation-btn').addEventListener('click', async () => {
+            //     const enjoymentPrompt = document.getElementById('enjoyment-prompt').value;
+            //     const aiOutputDiv = document.getElementById('ai-recommendation-output');
+            //     aiOutputDiv.innerHTML = `<p class="text-center text-purple-500">Analizando tus preferencias...</p>`;
 
-                const allRestaurantsInfo = restaurantsData.map(r => 
-                    `Nombre: ${r.name}, Ubicación: ${r.location}, Ambiente: ${r.ambiance}, Rango de Precio: ${r.priceRange}, Destacado: ${r.highlight}, Especialidades: ${r.details.specialties.join(', ')}`
-                ).join('\n\n');
+            //     const allRestaurantsInfo = restaurantsData.map(r =>
+            //         `Nombre: ${r.name}, Ubicación: ${r.location}, Ambiente: ${r.ambiance}, Rango de Precio: ${r.priceRange}, Destacado: ${r.highlight}, Especialidades: ${r.details.specialties.join(', ')}`
+            //     ).join('\n\n');
 
-                const prompt = `Soy el organizador de una comida de equipo de IT para unas 20 personas en la costa de Castellón. Busco el lugar ideal. Mi principal deseo es: "${enjoymentPrompt}".
+            //     const prompt = `Soy el organizador de una comida de equipo de IT para unas 20 personas en la costa de Castellón. Busco el lugar ideal. Mi principal deseo es: "${enjoymentPrompt}".
 
-Aquí está la lista de restaurantes disponibles con sus detalles:
-${allRestaurantsInfo}
+            // Aquí está la lista de restaurantes disponibles con sus detalles:
+            // ${allRestaurantsInfo}
 
-Basándote en mi deseo, por favor, sugiere el nombre del restaurante más idóneo de la lista anterior y explica brevemente por qué es la mejor opción. Sé conciso y directo, nombra solo un restaurante y justifica tu elección.`;
+            // Basándote en mi deseo, por favor, sugiere el nombre del restaurante más idóneo de la lista anterior y explica brevemente por qué es la mejor opción. Sé conciso y directo, nombra solo un restaurante y justifica tu elección.`;
 
-                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-                const payload = { contents: chatHistory };
-                const apiKey = ""; 
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            //     let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            //     const payload = { contents: chatHistory };
+            //     const apiKey = "";
+            //     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    const result = await response.json();
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        let text = result.candidates[0].content.parts[0].text;
-                        // Convert markdown bold to HTML strong tags
-                        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                        aiOutputDiv.innerHTML = text;
-                    } else {
-                        aiOutputDiv.innerHTML = '<p class="text-red-500">No se pudo generar una recomendación. Inténtalo de nuevo.</p>';
-                    }
-                } catch (error) {
-                    console.error('Error al llamar a la API de Gemini para recomendación:', error);
-                    aiOutputDiv.innerHTML = '<p class="text-red-500">Error de conexión al generar la recomendación. Por favor, inténtalo más tarde.</p>';
-                }
-            });
+            //     try {
+            //         const response = await fetch(apiUrl, {
+            //             method: 'POST',
+            //             headers: { 'Content-Type': 'application/json' },
+            //             body: JSON.stringify(payload)
+            //         });
+            //         const result = await response.json();
+            //         if (result.candidates && result.candidates.length > 0 &&
+            //             result.candidates[0].content && result.candidates[0].content.parts &&
+            //             result.candidates[0].content.parts.length > 0) {
+            //             let text = result.candidates[0].content.parts[0].text;
+            //             text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            //             aiOutputDiv.innerHTML = text;
+            //         } else {
+            //             aiOutputDiv.innerHTML = '<p class="text-red-500">No se pudo generar una recomendación. Inténtalo de nuevo.</p>';
+            //         }
+            //     } catch (error) {
+            //         console.error('Error al llamar a la API de Gemini para recomendación:', error);
+            //         aiOutputDiv.innerHTML = '<p class="text-red-500">Error de conexión al generar la recomendación. Por favor, inténtalo más tarde.</p>';
+            //     }
+            // });
 
 
             grid.addEventListener('click', (e) => {
